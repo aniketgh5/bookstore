@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BookRest - Online Book Store</title>
+  <title>BookNest - Online Book Store</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,8 +13,11 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      color: #202124;
-      background: #f7f4ee;
+      color: #eaf3ff;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(51, 166, 255, 0.35), transparent 28%),
+        radial-gradient(circle at 82% 20%, rgba(76, 218, 255, 0.24), transparent 25%),
+        linear-gradient(135deg, #061633 0%, #0b3270 45%, #071c46 100%);
       line-height: 1.5;
     }
 
@@ -22,9 +25,10 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(255, 255, 255, 0.94);
-      border-bottom: 1px solid #e4ded3;
-      backdrop-filter: blur(10px);
+      background: rgba(3, 18, 48, 0.78);
+      border-bottom: 1px solid rgba(173, 214, 255, 0.25);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 28px rgba(7, 15, 32, 0.22);
     }
 
     nav {
@@ -38,10 +42,12 @@
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: 800;
-      color: #1f4d46;
+      font-size: 26px;
+      font-weight: 900;
+      color: #f4fbff;
       white-space: nowrap;
+      letter-spacing: 0.5px;
+      text-shadow: 0 4px 14px rgba(107, 178, 255, 0.8);
     }
 
     .nav-links {
@@ -52,14 +58,15 @@
     }
 
     .nav-links a {
-      color: #333;
+      color: #edf7ff;
       text-decoration: none;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(13, 35, 69, 0.5);
     }
 
     .nav-links a:hover {
-      color: #b94f2f;
+      color: #9fe5ff;
     }
 
     .cart-btn,
@@ -68,15 +75,17 @@
     .book-card button {
       border: 0;
       cursor: pointer;
-      font-weight: 700;
-      border-radius: 6px;
-      transition: transform 0.2s ease, background 0.2s ease;
+      font-weight: 800;
+      border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 10px 20px rgba(11, 24, 51, 0.16);
     }
 
     .cart-btn {
-      background: #1f4d46;
-      color: #fff;
-      padding: 10px 14px;
+      background: linear-gradient(145deg, #29c5ff, #1359e8);
+      color: #f5fbff;
+      padding: 11px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
     }
 
     .hero {
@@ -84,14 +93,26 @@
       display: grid;
       align-items: center;
       background:
-        linear-gradient(90deg, rgba(15, 34, 31, 0.86), rgba(15, 34, 31, 0.52), rgba(15, 34, 31, 0.18)),
+        linear-gradient(90deg, rgba(2, 14, 42, 0.94), rgba(7, 48, 112, 0.76), rgba(31, 136, 255, 0.18)),
         url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1600&q=80");
       background-size: cover;
       background-position: center;
       color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 35%, rgba(95,162,255,0.18));
+      pointer-events: none;
     }
 
     .hero-content {
+      position: relative;
+      z-index: 1;
       max-width: 1120px;
       width: 100%;
       margin: 0 auto;
@@ -104,12 +125,13 @@
       line-height: 1.02;
       letter-spacing: 0;
       margin-bottom: 18px;
+      text-shadow: 0 8px 22px rgba(8, 16, 35, 0.5);
     }
 
     .hero p {
       max-width: 560px;
       font-size: 18px;
-      color: #f4efe8;
+      color: rgba(240, 246, 255, 0.9);
       margin-bottom: 28px;
     }
 
@@ -123,23 +145,26 @@
     .secondary-btn {
       padding: 13px 18px;
       font-size: 15px;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .primary-btn {
-      background: #d85d35;
-      color: #fff;
+      background: linear-gradient(145deg, #19d1ff, #164fff);
+      color: white;
     }
 
     .secondary-btn {
-      background: #fff;
-      color: #1f4d46;
+      background: linear-gradient(145deg, #eef8ff, #b9dcff);
+      color: #173e7f;
     }
 
     .primary-btn:hover,
     .secondary-btn:hover,
     .cart-btn:hover,
     .book-card button:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 16px 24px rgba(12, 24, 47, 0.2);
+      filter: brightness(1.03);
     }
 
     section {
@@ -157,12 +182,13 @@
     }
 
     .section-title h2 {
-      color: #1f4d46;
+      color: #eff7ff;
       font-size: 32px;
+      text-shadow: 0 6px 16px rgba(16, 37, 79, 0.45);
     }
 
     .section-title p {
-      color: #6d6257;
+      color: rgba(226, 238, 255, 0.8);
       max-width: 440px;
     }
 
@@ -175,20 +201,30 @@
     .category {
       min-height: 118px;
       padding: 20px;
-      border: 1px solid #e2d9cb;
+      border: 1px solid rgba(170, 205, 255, 0.3);
       border-radius: 8px;
-      background: #fff;
+      background: linear-gradient(145deg, rgba(38, 121, 214, 0.58), rgba(5, 28, 76, 0.86));
       display: grid;
       align-content: space-between;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 18px 30px rgba(5, 13, 30, 0.15);
+      transform: perspective(900px) rotateX(8deg) rotateY(-4deg);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .category:hover {
+      transform: perspective(900px) rotateX(0deg) rotateY(0deg) translateY(-5px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 22px 35px rgba(6, 15, 32, 0.2);
     }
 
     .category span {
       font-size: 30px;
+      color: #dbeeff;
+      text-shadow: 0 8px 18px rgba(18, 48, 105, 0.8);
     }
 
     .category h3 {
       font-size: 18px;
-      color: #2e2a26;
+      color: #f4fbff;
     }
 
     .books-grid {
@@ -198,14 +234,21 @@
     }
 
     .book-card {
-      background: #fff;
-      border: 1px solid #e2d9cb;
+      background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.12));
+      border: 1px solid rgba(179, 214, 255, 0.32);
       border-radius: 8px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100%;
-      box-shadow: 0 10px 30px rgba(35, 30, 24, 0.08);
+      box-shadow: 14px 22px 42px rgba(0, 9, 34, 0.34);
+      transform: perspective(1000px) rotateX(5deg) rotateY(-2deg);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .book-card:hover {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px);
+      box-shadow: 20px 32px 58px rgba(0, 8, 31, 0.48);
     }
 
     .book-cover {
@@ -215,18 +258,20 @@
       align-items: end;
       color: #fff;
       background: #315f57;
+      box-shadow: inset 0 -30px 45px rgba(4, 20, 36, 0.2);
     }
 
-    .book-cover.one { background: linear-gradient(135deg, #1f4d46, #70a58f); }
-    .book-cover.two { background: linear-gradient(135deg, #6f3040, #d1855a); }
-    .book-cover.three { background: linear-gradient(135deg, #24395f, #67a8c7); }
-    .book-cover.four { background: linear-gradient(135deg, #3c4230, #c1a45d); }
+    .book-cover.one { background: linear-gradient(135deg, #041a48, #1486ff 58%, #6dd9ff); }
+    .book-cover.two { background: linear-gradient(135deg, #0c246b, #256bff 58%, #84dbff); }
+    .book-cover.three { background: linear-gradient(135deg, #10115f, #178eea 58%, #4ad4d6); }
+    .book-cover.four { background: linear-gradient(135deg, #06285e, #2878ff 58%, #7cc4ff); }
 
     .book-cover strong {
       display: block;
       font-size: 25px;
       line-height: 1.08;
       max-width: 160px;
+      text-shadow: 0 8px 18px rgba(13, 23, 42, 0.45);
     }
 
     .book-info {
@@ -235,15 +280,16 @@
       flex: 1;
       flex-direction: column;
       gap: 8px;
+      background: rgba(9, 22, 48, 0.22);
     }
 
     .book-info h3 {
       font-size: 18px;
-      color: #1f4d46;
+      color: #f4fbff;
     }
 
     .author {
-      color: #70675f;
+      color: rgba(225, 237, 255, 0.75);
       font-size: 14px;
     }
 
@@ -259,22 +305,25 @@
     .price {
       font-size: 20px;
       font-weight: 800;
-      color: #b94f2f;
+      color: #78d6ff;
+      text-shadow: 0 4px 10px rgba(46, 184, 255, 0.36);
     }
 
     .book-card button {
-      background: #1f4d46;
+      background: linear-gradient(145deg, #27c8ff, #1155dc);
       color: #fff;
       padding: 10px 12px;
       min-width: 92px;
+      border: 1px solid rgba(255,255,255,0.22);
     }
 
     .offer-band {
       max-width: none;
       margin: 20px 0 0;
       padding: 52px 22px;
-      background: #1f4d46;
+      background: linear-gradient(135deg, rgba(12, 29, 66, 0.98), rgba(29, 88, 175, 0.82));
       color: #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
     }
 
     .offer-inner {
@@ -289,22 +338,24 @@
     .offer-inner h2 {
       font-size: 34px;
       margin-bottom: 8px;
+      text-shadow: 0 6px 18px rgba(10, 23, 47, 0.45);
     }
 
     .offer-inner p {
-      color: #dce8e2;
+      color: rgba(223, 237, 255, 0.9);
       max-width: 620px;
     }
 
     .newsletter {
-      background: #fff;
-      border: 1px solid #e2d9cb;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(16, 34, 67, 0.55));
+      border: 1px solid rgba(175, 210, 255, 0.35);
       border-radius: 8px;
       padding: 24px;
+      box-shadow: 0 18px 30px rgba(7, 17, 38, 0.18);
     }
 
     .newsletter h2 {
-      color: #1f4d46;
+      color: #f5fbff;
       margin-bottom: 14px;
       font-size: 26px;
     }
@@ -316,18 +367,20 @@
 
     .newsletter input {
       width: 100%;
-      border: 1px solid #cfc5b7;
-      border-radius: 6px;
+      border: 1px solid rgba(182, 216, 255, 0.4);
+      border-radius: 8px;
       padding: 13px 14px;
       font-size: 15px;
+      background: rgba(227, 239, 255, 0.95);
+      color: #173b73;
     }
 
     footer {
       padding: 28px 22px;
       text-align: center;
-      color: #6d6257;
-      border-top: 1px solid #e4ded3;
-      background: #fff;
+      color: rgba(228, 239, 255, 0.76);
+      border-top: 1px solid rgba(183, 214, 255, 0.25);
+      background: rgba(7, 18, 39, 0.55);
     }
 
     @media (max-width: 840px) {
