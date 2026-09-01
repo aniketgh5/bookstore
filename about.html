@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About BookNest</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #f5ecff;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(174, 92, 255, 0.34), transparent 28%),
+        radial-gradient(circle at 82% 20%, rgba(220, 126, 255, 0.23), transparent 25%),
+        linear-gradient(135deg, #1d0b38 0%, #53218e 45%, #260c54 100%);
+      line-height: 1.5;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(28, 8, 55, 0.78);
+      border-bottom: 1px solid rgba(220, 188, 255, 0.25);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 28px rgba(7, 15, 32, 0.22);
+    }
+
+    nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fbf5ff;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      text-shadow: 0 4px 14px rgba(201, 132, 255, 0.8);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fbf0ff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(45, 14, 82, 0.5);
+    }
+
+    .nav-links a:hover {
+      color: #e8b7ff;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 62px 22px;
+    }
+
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+      margin-bottom: 38px;
+    }
+
+    .about-copy h1 {
+      max-width: 680px;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.03;
+      margin-bottom: 18px;
+      color: #fff;
+      text-shadow: 0 8px 22px rgba(8, 16, 35, 0.5);
+    }
+
+    .about-copy p {
+      max-width: 640px;
+      color: rgba(248, 239, 255, 0.9);
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .about-panel {
+      min-height: 360px;
+      padding: 28px;
+      border: 1px solid rgba(221, 190, 255, 0.32);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(123, 55, 214, 0.48), rgba(39, 9, 78, 0.86)),
+        url("https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=900&q=80");
+      background-size: cover;
+      background-position: center;
+      display: grid;
+      align-content: end;
+      box-shadow: 14px 22px 42px rgba(0, 9, 34, 0.28);
+      overflow: hidden;
+    }
+
+    .about-panel h2 {
+      color: #fff;
+      font-size: 30px;
+      text-shadow: 0 8px 18px rgba(13, 23, 42, 0.45);
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .value-card {
+      min-height: 160px;
+      padding: 22px;
+      border: 1px solid rgba(218, 184, 255, 0.3);
+      border-radius: 8px;
+      background: linear-gradient(145deg, rgba(123, 55, 214, 0.58), rgba(39, 9, 78, 0.86));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 18px 30px rgba(5, 13, 30, 0.15);
+    }
+
+    .value-card span {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 30px;
+      font-weight: 900;
+      color: #f0ddff;
+      text-shadow: 0 8px 18px rgba(81, 27, 131, 0.8);
+    }
+
+    .value-card h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+      color: #fbf5ff;
+    }
+
+    .value-card p {
+      color: rgba(241, 225, 255, 0.78);
+      font-size: 15px;
+    }
+
+    .home-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 13px 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      background: linear-gradient(145deg, #c84fff, #6d2bff);
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 10px 20px rgba(11, 24, 51, 0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .home-btn:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 16px 24px rgba(12, 24, 47, 0.2);
+      filter: brightness(1.03);
+    }
+
+    footer {
+      padding: 28px 22px;
+      text-align: center;
+      color: rgba(243, 229, 255, 0.76);
+      border-top: 1px solid rgba(221, 190, 255, 0.25);
+      background: rgba(29, 9, 54, 0.55);
+    }
+
+    @media (max-width: 840px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 12px 18px;
+      }
+
+      .about-hero,
+      .values {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">BookNest</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#categories">Categories</a></li>
+        <li><a href="index.html#books">Best Sellers</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-hero">
+      <div class="about-copy">
+        <h1>About BookNest</h1>
+        <p>BookNest is made for readers who love discovering books without digging through endless shelves. We bring together popular novels, business reads, exam guides, Hindi literature, and useful self-growth titles in one simple store.</p>
+        <p>Our goal is to make book shopping quick, affordable, and enjoyable for students, professionals, and everyday readers.</p>
+        <a class="home-btn" href="index.html">Back to Store</a>
+      </div>
+      <div class="about-panel">
+        <h2>Books for every kind of reader.</h2>
+      </div>
+    </section>
+
+    <section class="values">
+      <article class="value-card">
+        <span>01</span>
+        <h3>Curated Choices</h3>
+        <p>We highlight books that are useful, loved by readers, and easy to pick from.</p>
+      </article>
+      <article class="value-card">
+        <span>02</span>
+        <h3>Fair Prices</h3>
+        <p>Fresh discounts and combo offers help readers build their library affordably.</p>
+      </article>
+      <article class="value-card">
+        <span>03</span>
+        <h3>Simple Shopping</h3>
+        <p>A clean browsing experience helps you find your next read without extra hassle.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 BookNest. Made for readers who always need one more book.</p>
+  </footer>
+</body>
+</html>
